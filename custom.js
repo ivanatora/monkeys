@@ -1,14 +1,24 @@
 sTarget = 'this is a test';
+iMutationRate = 1; //%
+iPopulationSize = 200;
+bFinished = false;
 
-var iMaxFitness = 0;
-var aRecordOutput = [];
+var setup = function(){
+    iMaxFitness = 0;
+    aRecordOutput = [];
+    aSpawningPool = [];
+    iPopulationNumber = 0;
+    bFinished = false;
+}
 
-var aSpawningPool = [];
+setup();
 
 var loop = function(){
+    if (bFinished) return;
+    
     // create population
     var population = [];
-    for (var i = 0; i < 100; i++){
+    for (var i = 0; i < iPopulationSize; i++){
         population[i] = new Monkey(aSpawningPool);
     }
 
@@ -30,6 +40,9 @@ var loop = function(){
         }
     }
     $('.record').html('Record: ' + aRecordOutput.join('') + ' at ' + iMaxFitness + '%');
+    if (iMaxFitness == 100){
+        bFinished = true;
+    }
     
     aSpawningPool = [];
     for (var i = 0; i < population.length; i++){
@@ -37,6 +50,8 @@ var loop = function(){
             aSpawningPool.push(population[i].letters);
         }
     }
+    
+    iPopulationNumber++;
 }
     
 setInterval(loop, 50);
@@ -44,8 +59,16 @@ setInterval(loop, 50);
 
 $('.do').click(function(e){
     e.preventDefault();
-    sTarget = $('input[type="text"]').val();
-    iMaxFitness = 0;
-    aRecordOutput = [];
-    aSpawningPool = [];
+    sTarget = $('input[name="target"]').val();
+    iMutationRate = parseInt($('input[name="mutation"]').val());
+    if (isNaN(iMutationRate)){
+        iMutationRate = 1;
+    }
+    
+    iPopulationSize = parseInt($('input[name="population"]').val());
+    if (isNaN(iPopulationSize)){
+        iPopulationSize = 200;
+    }
+    
+    setup();
 })

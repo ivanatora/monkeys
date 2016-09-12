@@ -28,7 +28,7 @@ function Monkey(aGenePool){
             }
             
             // mutation phase
-            if (Math.random() < 0.01){
+            if (Math.random() * 100 < iMutationRate){
                 var iMutationIdx = Math.round(Math.random() * sTarget.length);
                 this.letters[iMutationIdx] = possible.charAt(Math.floor(Math.random() * possible.length));
             }
