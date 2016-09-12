@@ -1,24 +1,44 @@
-var sTarget = 'shebek';
+sTarget = 'this is a test';
 
-console.log('start')
+var iMaxFitness = 0;
+var aRecordOutput = [];
+
+var aSpawningPool = [];
 
 var loop = function(){
     // create population
     var population = [];
-    for (var i = 0; i < 20; i++){
-        population[i] = new Monkey(sTarget.length);
+    for (var i = 0; i < 100; i++){
+        population[i] = new Monkey(aSpawningPool);
     }
-    
+
+    // generation phase
     var aOutput = [];
     for (var i = 0; i < population.length; i++){
-        aOutput.push(population[i].produceLetters())
-        population[i] = new Monkey(sTarget.length);
+        population[i].produceLetters();
+        population[i].calculateFitness();
+        
+        aOutput.push(population[i].letters.join('') + ' : ' + population[i].fitness + '%');
     }
-    
-//    console.log(output)
     $('.output').html(aOutput.join('<br />'))
+    
+    // selection phase
+    for (var i = 0; i < population.length; i++){
+        if (population[i].fitness > iMaxFitness){
+            iMaxFitness = population[i].fitness;
+            aRecordOutput = population[i].letters;
+        }
+    }
+    $('.record').html('Record: ' + aRecordOutput.join('') + ' at ' + iMaxFitness + '%');
+    
+    aSpawningPool = [];
+    for (var i = 0; i < population.length; i++){
+        for (var j = 0; j < population[i].fitness; j++){
+            aSpawningPool.push(population[i].letters);
+        }
+    }
 }
     
-setInterval(loop, 1000)    
+setInterval(loop, 50);
 
 
