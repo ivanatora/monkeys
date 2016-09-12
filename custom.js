@@ -28,7 +28,7 @@ var loop = function(){
         population[i].produceLetters();
         population[i].calculateFitness();
         
-        aOutput.push(population[i].letters.join('') + ' : ' + population[i].fitness + '%');
+        aOutput.push('monkey ' + i + ': '+population[i].letters.join('') + ' : ' + population[i].fitness + '%');
     }
     $('.output').html(aOutput.join('<br />'))
     
@@ -39,7 +39,7 @@ var loop = function(){
             aRecordOutput = population[i].letters;
         }
     }
-    $('.record').html('Record: ' + aRecordOutput.join('') + ' at ' + iMaxFitness + '%');
+    $('.record').html(aRecordOutput.join('') + ' at ' + iMaxFitness + '%');
     if (iMaxFitness == 100){
         bFinished = true;
     }
@@ -52,6 +52,7 @@ var loop = function(){
     }
     
     iPopulationNumber++;
+    $('.population_number').html(iPopulationNumber);
 }
     
 setInterval(loop, 50);

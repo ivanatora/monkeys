@@ -5,9 +5,9 @@
         
     </head>
     <body>
-        <table>
+        <table style='margin-bottom: 20px;'>
             <tr>
-                <td>Target Target (only latin lowercase characters, space allowed)</td>
+                <td>Target Target <br />(only latin lowercase characters,<br /> space allowed)</td>
                 <td><input type='text' name='target' value='this is a test'/></td>
             </tr>
             <tr>
@@ -22,9 +22,17 @@
                 <td></td>
                 <td><input type='button' class='do' value='Go'/></td>
             </tr>
+            <tr>
+                <td>Current record</td>
+                <td><div class='record'></div></td>
+            </tr>
+            <tr>
+                <td>Population number</td>
+                <td><div class='population_number'></div></td>
+            </tr>
         </table>
         
-        <div class='record'></div>
+        <h3>Monkey typed:</h3>
         <div class='output'></div>
         
     

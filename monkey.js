@@ -5,8 +5,8 @@ function Monkey(aGenePool){
     
     this.produceLetters = function(){
         this.letters = [];
-        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ";
-        var possible = "abcdefghijklmnopqrstuvwxyz0123456789 ";
+//        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ";
+        var possible = "abcdefghijklmnopqrstuvwxyz ";
         
         if (typeof aGenePool == 'undefined' || aGenePool.length == 0){
             for (var i = 0; i < sTarget.length; i++){
