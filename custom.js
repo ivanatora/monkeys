@@ -42,3 +42,10 @@ var loop = function(){
 setInterval(loop, 50);
 
 
+$('.do').click(function(e){
+    e.preventDefault();
+    sTarget = $('input[type="text"]').val();
+    iMaxFitness = 0;
+    aRecordOutput = [];
+    aSpawningPool = [];
+})
